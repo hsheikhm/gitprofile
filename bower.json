@@ -5,15 +5,9 @@
   ],
   "description": "",
   "main": "",
-  "moduleType": [
-    "amd",
-    "es6",
-    "globals",
-    "node",
-    "yui"
-  ],
+  "moduleType": [],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/ALRW/gitprofile",
   "private": true,
   "ignore": [
     "**/.*",

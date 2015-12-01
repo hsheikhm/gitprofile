@@ -25,5 +25,8 @@
   "dependencies": {
     "jasmine-core": "^2.3.4",
     "phantomjs": "^1.9.19"
+  },
+  "directories": {
+    "test": "test"
   }
 }
