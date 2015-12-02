@@ -8,6 +8,7 @@ describe('factory: Search', function(){
     search = Search;
   }));
 
+  var httpBackend;
   beforeEach(inject(function($httpBackend){
     httpBackend = $httpBackend;
     httpBackend
@@ -16,6 +17,12 @@ describe('factory: Search', function(){
       { items: items }
     );
   }));
+
+  afterEach(function(){
+    httpBackend.verifyNoOutstandingExpectation();
+    httpBackend.verifyNoOutstandingRequest();
+  });
+
 
   var items = [{
     "login": "tansaku",

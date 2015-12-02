@@ -1,45 +1,50 @@
 describe('GitUserSearchController', function() {
+  var ctrl, searchFake, scope;
+
   beforeEach(module('GitUserSearch'));
 
-  var ctrl;
+  beforeEach(function() {
+    searchFake = jasmine.createSpyObj('searchFake', ["query"]);
+    module({
+      Search: searchFake
+    });
+  });
 
   beforeEach(inject(function($controller) {
     ctrl = $controller('GitUserSearchController');
   }));
 
-  it('initializes with an empy search result and term', function() {
-    expect(ctrl.searchResult).toBeUndefined();
-    expect(ctrl.searchTerm).toBeUndefined();
-  });
+  beforeEach(inject(function($rootScope) {
+    scope = $rootScope;
+  }));
 
-  describe('When searching for a user', function() {
-    var httpBackend;
-    beforeEach(inject(function($httpBackend) {
-      httpBackend = $httpBackend;
-      httpBackend
-        .expectGET("https://api.github.com/search/users?q=hello")
-        .respond({
-          items: items
-        });
+  beforeEach(inject(function($q) {
+    searchFake.query.and.returnValue($q.when({
+      data: {
+        items: items
+      }
     }));
-    afterEach(function(){
-      httpBackend.verifyNoOutstandingExpectation();
-      httpBackend.verifyNoOutstandingRequest();
-    });
-    var items = [{
-      "login": "tansaku",
-      "avatar_url": "https://avatars.githubusercontent.com/u/30216?v=3",
-      "html_url": "https://github.com/tansaku"
-    }, {
-      "login": "stephenlloyd",
-      "avatar_url": "https://avatars.githubusercontent.com/u/196474?v=3",
-      "html_url": "https://github.com/stephenlloyd"
-    }];
+  }));
 
+  var items = [{
+    "login": "tansaku",
+    "avatar_url": "https://avatars.githubusercontent.com/u/30216?v=3",
+    "html_url": "https://github.com/tansaku"
+  }, {
+    "login": "stephenlloyd",
+    "avatar_url": "https://avatars.githubusercontent.com/u/196474?v=3",
+    "html_url": "https://github.com/stephenlloyd"
+  }];
+  describe('When searching for a user', function() {
+
+    it('initializes with an empy search result and term', function() {
+      expect(ctrl.searchResult).toBeUndefined();
+      expect(ctrl.searchTerm).toBeUndefined();
+    });
     it('displays search results', function() {
       ctrl.searchTerm = 'hello';
       ctrl.doSearch();
-      httpBackend.flush();
+      scope.$apply(); // checks for any differences in the page - calling this apply method on the scope of the whole page instead of just the current test
       expect(ctrl.searchResult.items).toEqual(items);
     });
   });
