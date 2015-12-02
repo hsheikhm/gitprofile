@@ -15,9 +15,9 @@ describe('GitUserSearchController', function(){
   describe('When searching for a user', function() {
     var httpBackend;
   beforeEach(inject(function($httpBackend) {
-    httpBackend = $httpBackend
+    httpBackend = $httpBackend;
     httpBackend
-      .when("GET", "https://api.github.com/search/users?q=hello")
+      .when("GET", "https://api.github.com/search/users?access_token=0e0b7152bf674a88d2cdc4b10c56d1140b44aca0&q=hello")
       .respond(
         { items: items }
       );
