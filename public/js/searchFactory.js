@@ -7,9 +7,28 @@ githubUserSearch.factory('Search', ['$http', function($http){
         url: queryUrl,
         method: 'GET',
         params: {
-          'q': searchTerm
+          'q': searchTerm,
+          'access_token': accessToken
         }
       });
-    }
+    },
+    followersQuery: function(username) {
+      return $http({
+        url: 'https://api.github.com/users/' + username + '/followers',
+        method: 'GET',
+        params: {
+          'access_token': accessToken
+        }
+      });
+    },
+    reposQuery: function(username) {
+      return $http({
+        url: 'https://api.github.com/users/' + username + '/repos',
+        method: 'GET',
+        params: {
+          'access_token': accessToken
+        }
+      });
+    },
   };
 }]);

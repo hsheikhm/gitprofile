@@ -1,3 +1,4 @@
 uninstall_node.sh
 /bower_components
 /node_modules
+/public/js/accessToken.js
