@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Github User Searh</title>
+  <title>Github User Search</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
@@ -22,7 +22,7 @@
     </form>
     <ul class="list-group">
     <li ng-repeat="user in searchCtrl.searchResult.items">
-      <img ng-src="{{user.avatar_url}}" width='25em' height='25em'>
+      <img ng-src="{{user.avatar_url}}" width='25em' height='25,em'>
       <a ng-href="{{user.html_url}}">{{user.login}}</a>
     </li>
   </ul>
