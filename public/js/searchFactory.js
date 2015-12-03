@@ -8,7 +8,7 @@ githubUserSearch.factory('Search', ['$http', function($http){
         method: 'GET',
         params: {
           'q': searchTerm,
-          'access_token': accessToken
+          'access_token': ACCESS_TOKEN
         }
       });
     },
@@ -17,7 +17,7 @@ githubUserSearch.factory('Search', ['$http', function($http){
         url: 'https://api.github.com/users/' + username + '/followers',
         method: 'GET',
         params: {
-          'access_token': accessToken
+          'access_token': ACCESS_TOKEN
         }
       });
     },
@@ -26,7 +26,7 @@ githubUserSearch.factory('Search', ['$http', function($http){
         url: 'https://api.github.com/users/' + username + '/repos',
         method: 'GET',
         params: {
-          'access_token': accessToken
+          'access_token': ACCESS_TOKEN
         }
       });
     },
