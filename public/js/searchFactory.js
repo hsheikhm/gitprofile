@@ -7,27 +7,20 @@ githubUserSearch.factory('Search', ['$http', function($http){
         url: queryUrl,
         method: 'GET',
         params: {
-          'q': searchTerm,
-          'access_token': ACCESS_TOKEN
+          'q': searchTerm
         }
       });
     },
     followersQuery: function(username) {
       return $http({
         url: 'https://api.github.com/users/' + username + '/followers',
-        method: 'GET',
-        params: {
-          'access_token': ACCESS_TOKEN
-        }
+        method: 'GET'
       });
     },
     reposQuery: function(username) {
       return $http({
         url: 'https://api.github.com/users/' + username + '/repos',
-        method: 'GET',
-        params: {
-          'access_token': ACCESS_TOKEN
-        }
+        method: 'GET'
       });
     },
   };
