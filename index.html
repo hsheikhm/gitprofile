@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Github User Search</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="public/css/master.css">
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -14,18 +15,28 @@
 </head>
 
 <body ng-controller="GitUserSearchController as searchCtrl">
-  <div>
-    <form class="form-horizontal">
-      <label ng-show="searchCtrl.searchTerm.length">{{searchCtrl.searchTerm}}</label>
-      <input type="text" ng-model="searchCtrl.searchTerm" ng-change="searchCtrl.doSearch()" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }" ng-minlength="1">
-      <button class="btn" ng-click="searchCtrl.doSearch()">Search</button>
-    </form>
-    <ul class="list-group">
-    <li ng-repeat="user in searchCtrl.searchResult.items">
-      <img ng-src="{{user.avatar_url}}" width='25em' height='25,em'>
-      <a ng-href="{{user.html_url}}">{{user.login}}</a>
-    </li>
-  </ul>
+  <div class="container">
+    <div class="center-block">
+      <form class="form-horizontal">
+        <div class="page-header custom_div" >
+          <input class="custom_text_input" type="text" ng-model="searchCtrl.searchTerm" ng-change="searchCtrl.doSearch()"
+           ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }" ng-minlength="1"
+           placeholder="Enter a Github Username">
+          <button class="btn btn-primary" ng-click="searchCtrl.doSearch()">Search</button>
+        </div>
+      </form>
+      <div class="jumbotron">
+
+          <ul class="list-group">
+              <li ng-repeat="user in searchCtrl.searchResult.items" class="custom_user_grid">
+                <img ng-src="{{user.avatar_url}}" width='50em' height='50em'>
+                <a ng-href="{{user.html_url}}">{{user.login}}</a>
+              </li>
+          </ul>
+
+      </div>
+    </div>
   </div>
 </body>
+
 </html>
