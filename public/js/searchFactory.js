@@ -7,20 +7,27 @@ githubUserSearch.factory('Search', ['$http', function($http){
         url: queryUrl,
         method: 'GET',
         params: {
-          'q': searchTerm
+          'q': searchTerm,
+          'access_token': '7e2741cf0e27e9104ce366c2b251d393bc93a1c5'
         }
       });
     },
     followersQuery: function(username) {
       return $http({
         url: 'https://api.github.com/users/' + username + '/followers',
-        method: 'GET'
+        method: 'GET',
+        params: {
+          'access_token': '7e2741cf0e27e9104ce366c2b251d393bc93a1c5'
+        }
       });
     },
     reposQuery: function(username) {
       return $http({
         url: 'https://api.github.com/users/' + username + '/repos',
-        method: 'GET'
+        method: 'GET',
+        params: {
+          'access_token': '7e2741cf0e27e9104ce366c2b251d393bc93a1c5'
+        }
       });
     },
   };
